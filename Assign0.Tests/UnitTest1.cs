@@ -7,21 +7,6 @@ namespace Assign0.Tests
     public class ProgramTests
     {
         [Fact]
-        public void Method_printHelloWorld()
-        {
-            //Arrange
-            var writer = new StringWriter();
-            Console.SetOut(writer);
-
-            //Act
-            Program.Main(new string[1]{"Print"});
-
-            //Assert
-            var output = writer.GetStringBuilder().ToString().Trim();
-            Assert.Equal("Hello World!", output);
-        }
-
-        [Fact]
         public void LeapYear_is_divisible_by_four()
         {
             //Arrange
@@ -81,6 +66,35 @@ namespace Assign0.Tests
             Assert.True(result1);
             Assert.True(result2);
         }
-    
+
+        [Fact]
+        public void giveResult_prints_yay_if_leepyear(){
+            //Arrange
+            int input = 400;
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            //Act
+            Program.giveResult(input);
+
+            //Assert
+            var output = writer.GetStringBuilder().ToString().Trim();
+            Assert.Equal("yay",output);
+        }
+
+        [Fact]
+        public void giveResult_prints_nay_if_not_leepyear(){
+            //Arrange
+            int input = 401;
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            //Act
+            Program.giveResult(input);
+
+            //Assert
+            var output = writer.GetStringBuilder().ToString().Trim();
+            Assert.Equal("nay",output);
+        }
     }
 }

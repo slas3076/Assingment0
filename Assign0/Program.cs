@@ -6,17 +6,9 @@ namespace Assign0
     {
         public static void Main(string[] args)
         {
-            if(args[0] == "Print"){
-                printHelloWorld();
-            }
-
-            if(args[0] == "LeapYear"){
-
-            }
-        }
-
-        public static void printHelloWorld(){
-            Console.WriteLine("Hello World!");
+            startUserInterface();
+            var inputyear = readUserInput();
+            giveResult(inputyear);
         }
 
         public static bool isLeapYear(int year){
@@ -31,5 +23,23 @@ namespace Assign0
                 }
         }
     
+        public static void startUserInterface(){
+            Console.WriteLine("This is the leap-year test. Please write a year and press ENTER and it will tell you if it is a leap year:");
+        }
+
+        public static int readUserInput(){
+            int typedYear = Convert.ToInt32(Console.ReadLine());
+            return typedYear;
+        }
+
+        public static void giveResult(int year){
+            string outputString = "";
+            if(isLeapYear(year)){
+                outputString = "yay";
+            }else {
+                outputString = "nay";
+            }
+            Console.WriteLine(outputString);
+        }
     }
 }
