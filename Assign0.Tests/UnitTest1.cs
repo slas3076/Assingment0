@@ -6,6 +6,7 @@ namespace Assign0.Tests
 {
     public class ProgramTests
     {
+        //Tests the isLeepYear method
         [Fact]
         public void LeapYear_is_divisible_by_four()
         {
@@ -67,6 +68,10 @@ namespace Assign0.Tests
             Assert.True(result2);
         }
 
+
+
+
+        //User feedback result testing. Tests giveResult method
         [Fact]
         public void giveResult_prints_yay_if_leepyear(){
             //Arrange
@@ -84,7 +89,7 @@ namespace Assign0.Tests
 
         [Fact]
         public void giveResult_prints_nay_if_not_leepyear(){
-            //Arrange
+           //Arrange
             int input = 401;
             var writer = new StringWriter();
             Console.SetOut(writer);
@@ -94,7 +99,76 @@ namespace Assign0.Tests
 
             //Assert
             var output = writer.GetStringBuilder().ToString().Trim();
-            Assert.Equal("nay",output);
+            Assert.Equal("nay",output); 
         }
+
+
+        //Tests the afterOneFiveEigthTwo that makes sure the year is after 1582
+        [Fact]
+        public void afterOneFiveEigthTwo_return_true_on_after(){
+            //Arrange
+            var input = 1800;
+
+            //Act
+            var result = Program.afterOneFiveEigthTwo(input);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        /*
+        Cant get it to work
+        [Fact]
+        public void afterOneFiveEigthTwo_return_false_on_before(){
+            //Arrange
+            var input = 100;
+
+            //Act Assert
+            Assert.ThrowsException<Exception>(() => Program.afterOneFiveEigthTwo(input));
+        }
+        */
+
+        //Test the number tester
+        [Fact]
+        public void numberConverter_Converts_a_Number(){
+            //Arrange
+            string testString = "2000";
+            int answerNumber = 2000;
+
+            //Act
+            var output = Program.numberConverter(testString);
+
+            //Assert
+            Assert.Equal(output,answerNumber);
+        }
+
+        /*
+        Cant make it work
+        [Fact]
+        public void numberConverter_throws_an_Exception_when_string_isnt_a_number(){
+            //Arrange
+            string testString = "test";
+
+            //Act Assert
+            Assert.ThrowsException<Exception>(() => Program.numberConverter(testString));
+        }
+        */
+
+        [Fact]
+        public void startUserInterface_Prints_instructions(){
+            //Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            //Act
+            Program.startUserInterface();
+
+            //Assert
+            var output = writer.GetStringBuilder().ToString().Trim();
+            Assert.Equal("This is the leap-year test. Please write a year and press ENTER and it will tell you if it is a leap year:", output);
+        }
+
+
+
     }
 }

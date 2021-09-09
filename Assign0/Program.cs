@@ -7,8 +7,7 @@ namespace Assign0
         public static void Main(string[] args)
         {
             startUserInterface();
-            var inputyear = readUserInput();
-            giveResult(inputyear);
+            readUserInput();
         }
 
         public static bool isLeapYear(int year){
@@ -27,9 +26,19 @@ namespace Assign0
             Console.WriteLine("This is the leap-year test. Please write a year and press ENTER and it will tell you if it is a leap year:");
         }
 
-        public static int readUserInput(){
-            int typedYear = Convert.ToInt32(Console.ReadLine());
-            return typedYear;
+        public static void readUserInput(){
+            try{
+                var userInput = Console.ReadLine();
+                var inputtedYear = numberConverter(userInput);
+                afterOneFiveEigthTwo(inputtedYear);
+                giveResult(inputtedYear);
+            }catch (System.FormatException){
+                Console.WriteLine("Your input was not a number, please write a year and press ENTER.");
+                readUserInput();
+            }catch (yearToOldException){
+                Console.WriteLine("Your inputted year was too old, must be after 1582. Please write a year afer 1582 and press ENTER");
+                readUserInput();
+            }
         }
 
         public static void giveResult(int year){
@@ -40,6 +49,27 @@ namespace Assign0
                 outputString = "nay";
             }
             Console.WriteLine(outputString);
+        }
+
+        public static int numberConverter(string userInput){
+            int typedYear = Convert.ToInt32(userInput);
+            return typedYear;
+        }
+
+        public static bool afterOneFiveEigthTwo(int year){
+            if(year > 1582){
+                return true;
+            }else {
+                throw new yearToOldException("The year is before 1583, invalid input.");
+            }
+        }
+
+        public class yearToOldException : Exception{
+            public yearToOldException(){
+            }
+
+            public yearToOldException(string message): base(message){
+            }
         }
     }
 }
