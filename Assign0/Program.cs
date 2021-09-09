@@ -6,6 +6,7 @@ namespace Assign0
     {
         public static void Main(string[] args)
         {
+            //Prints Hello World
             Console.WriteLine("Hello World!");
         }
     }
